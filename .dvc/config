@@ -1,4 +1,4 @@
 [core]
     remote = dagshub
 ['remote "dagshub"']
-    url = https://dagshub.com/kotasandeep50/exp3-mlops.dvc
+    url = https://dagshub.com/kotasandeep50/spam1.dvc
