@@ -1,0 +1,15 @@
+stages:
+  prepare:
+    cmd: python pipeline/prepare_data.py
+    deps:
+      - pipeline/prepare_data.py
+      - data/raw/emails.csv
+    outs:
+      - data/processed/emails.csv
+  train:
+    cmd: python model/train.py --data data/processed/emails.csv
+    deps:
+      - model/train.py
+      - data/processed/emails.csv
+    outs:
+      - model/artifacts/classifier

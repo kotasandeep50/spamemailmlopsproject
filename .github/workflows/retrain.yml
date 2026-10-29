@@ -1,0 +1,15 @@
+name: Scheduled monitoring and retraining
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0'
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -r monitoring/requirements.txt
+      - run: python monitoring/generate_report.py --reference data/processed/emails.csv --current data/raw/new_emails.csv
+      - run: python pipeline/retrain_trigger.py --report monitoring/reports/summary.json

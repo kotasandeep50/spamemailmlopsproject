@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Spam Detection: backend",
+      "type": "shell",
+      "command": "C:/Users/askgi/AppData/Local/Programs/Python/Python314/python.exe",
+      "args": ["-m", "uvicorn", "backend.app.main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Spam Detection: frontend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev", "--", "--host", "127.0.0.1", "--port", "5173"],
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Spam Detection: start services",
+      "dependsOn": ["Spam Detection: backend", "Spam Detection: frontend"],
+      "dependsOrder": "parallel",
+      "runOptions": { "runOn": "folderOpen" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}

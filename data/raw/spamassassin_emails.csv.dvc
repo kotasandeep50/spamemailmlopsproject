@@ -1,0 +1,5 @@
+outs:
+- md5: 29821a46305d9338594f290c0490a05b
+  size: 5489758
+  hash: md5
+  path: spamassassin_emails.csv
