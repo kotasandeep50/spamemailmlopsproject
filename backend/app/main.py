@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -8,8 +9,21 @@ from fastapi.responses import FileResponse
 from .model_loader import SpamModel
 from .schemas import HealthResponse, PredictionRequest, PredictionResponse
 
-app = FastAPI(title="Spam Email Detection API", version="1.0.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+CORS_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,http://localhost:8000",
+    ).split(",")
+    if origin.strip()
+]
+
+app = FastAPI(
+    title="Spam Email Detection API",
+    version="1.0.0",
+    root_path=os.getenv("ROOT_PATH", ""),
+)
+app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 model = SpamModel()
 REPORTS_DIR = Path(__file__).resolve().parents[2] / "monitoring" / "reports"
 

@@ -1,0 +1,15 @@
+{
+  "drift_detected": true,
+  "text_length_shift": 0.3111,
+  "spam_rate_shift": 0.0,
+  "reference_rows": 4,
+  "current_rows": 2,
+  "monitored_columns": [
+    "email_length",
+    "word_count",
+    "link_count",
+    "spam_label"
+  ],
+  "report_engine": "Evidently AI DataDriftPreset",
+  "evidently_report_generated": true
+}

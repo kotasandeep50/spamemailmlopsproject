@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: spam-email-detector
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: MODEL_PATH
+        value: /app/model/artifacts

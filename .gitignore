@@ -12,6 +12,8 @@ model/artifacts/*
 !model/artifacts/.gitkeep
 monitoring/reports/*.html
 monitoring/reports/*.json
+!monitoring/reports/drift_report.html
+!monitoring/reports/summary.json
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep
@@ -21,3 +23,10 @@ data/processed/*
 !data/raw/new_emails.csv
 .pytest_cache/
 .DS_Store
+deploy/terraform/.terraform/
+deploy/terraform/*.tfstate
+deploy/terraform/*.tfstate.*
+deploy/terraform/*.pem
+deploy/terraform/terraform.tfvars
+deploy/vercel-api/
+.vercel
